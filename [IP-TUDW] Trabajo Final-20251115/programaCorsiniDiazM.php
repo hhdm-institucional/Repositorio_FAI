@@ -20,15 +20,26 @@ include_once("memoria.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+function cargarJuegos (){
+    /**Carga 10 o más juegos predefinidos en una colección de juegos
+     * @param array $coleccionJuegos, $unJuego, $nombres
+     * @param int $aciertos1, $aciertos2
+     * @return $array 
+     */
 
-function juagarMemoria(){
-    
+    /* H: Explicación: uso un array de nombres para crear nombres aleatorios, supongo
+    que juegan 5 veces cada juego. Uso un for para cargar la colección de juegos. */
+    $coleccionJuegos=array();  
+    $nombres=array("Sofía", "Alejandro", "María", "Sebastián", "Valentina", "Diego");
+
+    for ($i=0; $i < 11; $i++) { 
+        $aciertos1=random_int(0,5);
+        $aciertos2=5-$aciertos1;
+        $unJuego=array("jugador1"=>$nombres[random_int(0,5)], "aciertos1"=>$aciertos1,"jugador2"=>$nombres[random_int(0,5)], "aciertos2"=>$aciertos2);
+        $coleccionJuegos[i]=$unJuego;
+    }
+    return $coleccionJuegos;
 }
-
-
-
-
-
 
 
 /**************************************/
@@ -37,7 +48,7 @@ function juagarMemoria(){
 
 //Declaración de variables:
 /* @param string $nombre1, $nombre2 
- * 
+ * @param int $nroJuego
  */
 
 
