@@ -32,7 +32,7 @@ function cargarJuegos (){
     $coleccionJuegos=array();  
     $nombres=array("Sofía", "Alejandro", "María", "Sebastián", "Valentina", "Diego");
 
-    for ($i=0; $i < 11; $i++) { 
+    for ($i=0; $i < 10; $i++) { 
         $total=random_int(2,8); // mínimo 2 juegos y máximo 8, lo humanamente razonable
         $empates=random_int(0,3); // establesco hasta 3 empates
         $aciertos1=random_int(0,$total-$empates); // random entre los totales y los ya empatados  
@@ -50,13 +50,16 @@ function cargarJuegos (){
 
 //Declaración de variables:
 /*
- * @param int $cantJuegos, $opcion
+ * @param int $cantJuegos, $opcion, $nroJuego
  * @param array $Juegos, $unJuego 
+ * @param string $resultadoUnJuego
  */
 
 
 //Inicialización de variables:
 $opcion=0;
+$nroJuego=-1;
+$resultadoUnJuego="";
 //Precargado (Punto 11.a)
 $Juegos=cargarJuegos();
 $cantJuegos=count($Juegos); //total de juegos en $Juegos
@@ -65,31 +68,51 @@ $cantJuegos=count($Juegos); //total de juegos en $Juegos
 
 // Estas 3 líneas de código ejecutan el juego y muestran el arreglo retornado con los resultado
 // Probar la primera vez y luego comentar/borrar
-$juego = jugarMemoria();
-echo "jugador 1 " . $juego["jugador1"] . ": " . $juego["aciertos1"] . " aciertos" . "\n";
-echo "jugador 2 " . $juego["jugador2"] . ": " . $juego["aciertos2"] . " aciertos" . "\n";
-
-
-
+//>$juego = jugarMemoria();
+//>echo "jugador 1 " . $juego["jugador1"] . ": " . $juego["aciertos1"] . " aciertos" . "\n";
+//>echo "jugador 2 " . $juego["jugador2"] . ": " . $juego["aciertos2"] . " aciertos" . "\n";
 
 
 
 do {
-    $opcion = ...;
+    echo "Ingrese una de las opciones del menú (0 para salir): \n".
+         "1) Jugar Memoria \n".
+         "2) Mostrar un juego \n"
+         ;
+
+    $opcion =trim(fgets(STDIN));
 
     
     switch ($opcion) {
         case 1: /* 1) JUGAR A MEMORIA */ 
             /* Al iniciar se solicitan los nombres de los jugadores (lo hace la funcion en memoria.php)
-            * Al finalizar guarda los resultados en una estructura de datos ($Juegos)
-            */
+            * Al finalizar guarda los resultados en una estructura de datos ($Juegos)  */
             $unJuego=jugarMemoria();
             $Juegos[$cantJuegos]=$unJuego; //Si ya hay 10 juegos, el índice 10 es correcto para guardar el siguiente juego
             $cantJuegos++;
             break;
 
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+            /* 2) MOSTRAR UN JUEGO */
+            /* Se solicita al usuario un número de juego y se lo muestra en pantalla */
+            
+            do{
+                echo "Ingrese un número entre 0 y ".($cantJuegos-1)." \n";
+                $nroJuego=trim(fgets(STDIN));
+                if($nroJuego>-1 && $nroJuego<$cantJuegos){
+                    $unJuego=$Juegos[$nroJuego];
+                    $resultadoUnJuego=($unJuego["aciertos1"]>$unJuego["aciertos2"]?"ganó jugador 1":($unJuego["aciertos1"]<$unJuego["aciertos2"]?("ganó jugador 2"):("empate")));
+                    echo "**************************************\n".
+                        "Juego MEMORIA: ".$nroJuego." ".$resultadoUnJuego." \n".
+                        "Jugador 1: ".$unJuego["jugador1"]." obtuvo ".$unJuego["aciertos1"]." aciertos \n".//ver de poner el nombre en uppercase
+                        "Jugador 2: ".$unJuego["jugador2"]." obtuvo ".$unJuego["aciertos2"]." aciertos \n".
+                        "**************************************\n\n";  
+                }else{
+                    echo "Error: Número de juego inválido. \n";
+                    $nroJuego=-1;
+                }
+            }while ($nroJuego==-1);
+
 
             break;
 
@@ -98,6 +121,10 @@ do {
 
             break;
         
-        //...
+        case 0: 
+            echo "Saliendo...\n";
+            break;
+        default:
+            echo "Opción invalida, por favor ingrese una opción valida: \n";
     }
-} while ($opcion != 7);
+} while ($opcion != 0);
