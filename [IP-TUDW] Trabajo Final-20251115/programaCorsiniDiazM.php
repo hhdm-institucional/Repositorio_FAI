@@ -35,7 +35,7 @@ function cargarJuegos (){
     for ($i=0; $i < 10; $i++) { 
         $total=random_int(2,8); // mínimo 2 juegos y máximo 8, lo humanamente razonable
         $empates=random_int(0,3); // establesco hasta 3 empates
-        $aciertos1=random_int(0,$total-$empates); // random entre los totales y los ya empatados  
+        $aciertos1=random_int(0,($total-$empates)); // random entre los totales y los ya empatados  
         $aciertos2=$total-$aciertos1-$empates; // los restantes son aciertos 2
         $unJuego=array("jugador1"=>$nombres[random_int(0,5)], "aciertos1"=>$aciertos1,"jugador2"=>$nombres[random_int(0,5)], "aciertos2"=>$aciertos2);
         $coleccionJuegos[$i]=$unJuego;
@@ -125,6 +125,7 @@ do {
             echo "Saliendo...\n";
             break;
         default:
-            echo "Opción invalida, por favor ingrese una opción valida: \n";
+            echo "Opción invalida... \n";
+            break;
     }
 } while ($opcion != 0);
