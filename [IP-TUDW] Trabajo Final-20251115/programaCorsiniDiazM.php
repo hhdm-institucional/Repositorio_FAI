@@ -20,6 +20,7 @@ include_once("memoria.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+//1) 
 function cargarJuegos (){
     /**Carga 10 o más juegos predefinidos en una colección de juegos
      * @param array $coleccionJuegos, $unJuego, $nombres
@@ -42,7 +43,38 @@ function cargarJuegos (){
     }
     return $coleccionJuegos;
 }
+//2) -> En memoria.php como solicitarNumerosEntre($min,$max)
+//3)
+function seleccionarOpcion(){
+    /**Muestra las opciones del menú en la pantalla, solicita al usuario una opción valida
+     * Vuelve a solicitar una opcion si es inválida, la última opcón debe ser Salir
+     * @param int $opcion 
+     * @return int       */
+    
+    echo "Ingrese una de las opciones del menú (0 para salir): \n". //LA ULTIMA OPCION DEBE SER SALIR
+         "1) Jugar Memoria \n".
+         "2) Mostrar un juego \n"
+         ;
 
+    $opcion =solicitarNumeroEntre(0,2); // A modificar $max cuando se agregen mas opciones 
+    return $opcion;
+}
+//4)
+function imprimirDatosJuego(array $Juegos, int $indice){
+    /**Dada la colección de juegos y un indice, imprime los datos del juego
+     * @param array $unJuego
+     * @param string $resultadoUnJuego
+     */
+                            
+    $unJuego=$Juegos[$indice];
+    $resultadoUnJuego=($unJuego["aciertos1"]>$unJuego["aciertos2"]?"ganó jugador 1":($unJuego["aciertos1"]<$unJuego["aciertos2"]?("ganó jugador 2"):("empate")));
+    echo "\n**************************************\n".
+        "Juego MEMORIA: ".$indice." ".$resultadoUnJuego." \n".
+        "Jugador 1: ".$unJuego["jugador1"]." obtuvo ".$unJuego["aciertos1"]." aciertos \n".//ver de poner el nombre en uppercase
+        "Jugador 2: ".$unJuego["jugador2"]." obtuvo ".$unJuego["aciertos2"]." aciertos \n".
+        "**************************************\n\n";  
+                
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -74,15 +106,9 @@ $cantJuegos=count($Juegos); //total de juegos en $Juegos
 
 
 
-do {
-    echo "Ingrese una de las opciones del menú (0 para salir): \n".
-         "1) Jugar Memoria \n".
-         "2) Mostrar un juego \n"
-         ;
+do {    
+    $opcion =seleccionarOpcion();
 
-    $opcion =trim(fgets(STDIN));
-
-    
     switch ($opcion) {
         case 1: /* 1) JUGAR A MEMORIA */ 
             /* Al iniciar se solicitan los nombres de los jugadores (lo hace la funcion en memoria.php)
@@ -95,25 +121,9 @@ do {
         case 2: 
             /* 2) MOSTRAR UN JUEGO */
             /* Se solicita al usuario un número de juego y se lo muestra en pantalla */
-            
-            do{
-                echo "Ingrese un número entre 0 y ".($cantJuegos-1)." \n";
-                $nroJuego=trim(fgets(STDIN));
-                if($nroJuego>-1 && $nroJuego<$cantJuegos){
-                    $unJuego=$Juegos[$nroJuego];
-                    $resultadoUnJuego=($unJuego["aciertos1"]>$unJuego["aciertos2"]?"ganó jugador 1":($unJuego["aciertos1"]<$unJuego["aciertos2"]?("ganó jugador 2"):("empate")));
-                    echo "**************************************\n".
-                        "Juego MEMORIA: ".$nroJuego." ".$resultadoUnJuego." \n".
-                        "Jugador 1: ".$unJuego["jugador1"]." obtuvo ".$unJuego["aciertos1"]." aciertos \n".//ver de poner el nombre en uppercase
-                        "Jugador 2: ".$unJuego["jugador2"]." obtuvo ".$unJuego["aciertos2"]." aciertos \n".
-                        "**************************************\n\n";  
-                }else{
-                    echo "Error: Número de juego inválido. \n";
-                    $nroJuego=-1;
-                }
-            }while ($nroJuego==-1);
-
-
+            echo "Ingrese un número entre 0 y ".($cantJuegos-1)." \n";
+            $nroJuego=solicitarNumeroEntre(0,$cantJuegos-1);
+            imprimirDatosJuego($Juegos, $nroJuego);                
             break;
 
         case 3: 

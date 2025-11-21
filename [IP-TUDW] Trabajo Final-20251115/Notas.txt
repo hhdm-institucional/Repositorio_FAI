@@ -1,0 +1,17 @@
+FUNCIONES
+***************************************
+Las funciones son las necesarias para usar el programa
+Funciones creadas hasta el momento:
+-cargarJuegos: precarga juegos en la coleccion de juegos
+-solicitarNumeroEntre: funcion de memoria.php ya creada, sirve para ingresar un número que este en los limites de la estructura a consultar
+-seleccionarOpcion(): Menu que internamente usa solicitarNumeroEntre() para seleccionar una opcion correcta del menu  
+-imprimirDatosJuego: imprime los datos de un juego 
+
+ESTRUCTURAS
+***************************************
+Las estructuras son los arreglos que vamos creando y en la que vamos almacenando datos.
+Estructuras usadas hasta el momento:
+-ColeccionJuegos: estructura multidimensional donde se guarda cada ColeccionJuegos
+-Juego: estructura de un juego donde se almacenan los datos de los jugadores y sus aciertos
+
+
