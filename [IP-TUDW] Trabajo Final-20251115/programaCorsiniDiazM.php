@@ -75,6 +75,32 @@ function imprimirDatosJuego(array $Juegos, int $indice){
         "**************************************\n\n";  
                 
 }
+//5)
+function agregarJuego(array $Juegos, array $unJuego){
+    /** Lee una colección de juegos y un juego, agrega el juego a la colección
+     * @return array    */
+    $Juegos[count($Juegos)]=$unJuego;
+}
+//6)
+function primerJuegoGanado(array $Juegos, string $nombreJuegador){
+    /**Lee una colección de juegos y un nombre de jugador y retorna el índice del primer juego ganado por dicho jugador
+     * @param int $indice, $cont, $cant
+     * @param array $unJuego
+     * @return int     */
+    $indice=-1;
+    $cont=0;
+    $cant=count($Juegos);
+    while ($cont<$cant && $indice==-1) {
+        $unJuego=$Juegos[$cont];
+        if ($unJuego["jugador1"]==$nombreJuegador && $unJuego["aciertos1"]>$unJuego["aciertos2"]) {
+            $indice=$cont;    
+        }elseif ($unJuego["jugador2"]==$nombreJuegador && $unJuego["aciertos2"]>$unJuego["aciertos1"]) {
+            $indice=$cont;    
+        }
+        $cont++;
+    }
+    return $indice;
+}
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
