@@ -13,7 +13,14 @@ include_once("memoria.php");
  * Legajo: 111293. 
  * Carrera: TUDW.
  * Mail: hector.diaz@est.fi.uncoma.edu.ar
- * Usuario Github: hhdm-institucional */
+ * Usuario Github: hhdm-institucional 
+ * 
+ * Apellido y nombre: Corsini, Agustín.
+ * Legajo: FAI-5302.
+ * Carrera: TUDW.
+ * Mail: agustin.corsini@est.fi.uncoma.edu.ar
+ * Usuario GitHub: AgustinCorsini
+ * */
 
 
 /**************************************/
@@ -52,9 +59,9 @@ function seleccionarOpcion(){
      * @return int       */
     
     echo "Ingrese una de las opciones del menú (0 para salir): \n". //LA ULTIMA OPCION DEBE SER SALIR
-         "1) Jugar Memoria \n".
-         "2) Mostrar un juego \n"
-         ;
+        "1) Jugar Memoria \n".
+        "2) Mostrar un juego \n" 
+        ;
 
     $opcion =solicitarNumeroEntre(0,2); // A modificar $max cuando se agregen mas opciones 
     return $opcion;
@@ -111,14 +118,16 @@ do {
 
     switch ($opcion) {
         case 1: /* 1) JUGAR A MEMORIA */ 
-            /* Al iniciar se solicitan los nombres de los jugadores (lo hace la funcion en memoria.php)
-            * Al finalizar guarda los resultados en una estructura de datos ($Juegos)  */
+            /**
+             * Al iniciar se solicitan los nombres de los jugadores (lo hace la funcion en memoria.php)
+             * Al finalizar guarda los resultados en una estructura de datos ($Juegos)
+             **/
             $unJuego=jugarMemoria();
             $Juegos[$cantJuegos]=$unJuego; //Si ya hay 10 juegos, el índice 10 es correcto para guardar el siguiente juego
             $cantJuegos++;
             break;
 
-        case 2: 
+        case 2:     
             /* 2) MOSTRAR UN JUEGO */
             /* Se solicita al usuario un número de juego y se lo muestra en pantalla */
             echo "Ingrese un número entre 0 y ".($cantJuegos-1)." \n";
