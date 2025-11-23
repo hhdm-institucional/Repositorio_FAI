@@ -126,6 +126,8 @@ do {
             $Juegos[$cantJuegos]=$unJuego; //Si ya hay 10 juegos, el índice 10 es correcto para guardar el siguiente juego
             $cantJuegos++;
             break;
+            //$iniciarJuego = solicitarNombres($juego);
+            //$iniciarJuego;
 
         case 2:     
             /* 2) MOSTRAR UN JUEGO */
