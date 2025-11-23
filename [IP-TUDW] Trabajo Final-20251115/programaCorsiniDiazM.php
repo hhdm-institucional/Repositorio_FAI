@@ -26,6 +26,47 @@ include_once("memoria.php");
 /**************************************/
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
+/**
+ * Funcion que muestra el primer juego ganado del jugador 
+ * @param array $partida;
+ */
+function mostrarPrimerJuegoGanado($partidas) {
+
+    echo "Ingrese el nombre del jugador a buscar: ";
+    $nombre = ucfirst(strtolower(trim(fgets(STDIN))));
+    $encontro = false;
+
+    foreach ($partidas as $indice => $partida) {
+
+        // Caso 1: Ganó el jugador 1
+        if ($partida["ganador"] == 1 && $partida["jugador1"] == $nombre) {
+            $encontro = true;
+
+            echo "\n***************************************\n";
+            echo "Juego MEMORIA: " . ($indice + 1) . " (ganó jugador 1)\n";
+            echo "Jugador 1: " . strtoupper($partida["jugador1"]) . " obtuvo " . $partida["aciertos_j1"] . " aciertos\n";
+            echo "Jugador 2: " . strtoupper($partida["jugador2"]) . " obtuvo " . $partida["aciertos_j2"] . " aciertos\n";
+            echo "***************************************\n\n";
+            break;
+        }
+
+        // Caso 2: Ganó el jugador 2
+        if ($partida["ganador"] == 2 && $partida["jugador2"] == $nombre) {
+            $encontro = true;
+
+            echo "\n***************************************\n";
+            echo "Juego MEMORIA: " . ($indice + 1) . " (ganó jugador 2)\n";
+            echo "Jugador 1: " . strtoupper($partida["jugador1"]) . " obtuvo " . $partida["aciertos_j1"] . " aciertos\n";
+            echo "Jugador 2: " . strtoupper($partida["jugador2"]) . " obtuvo " . $partida["aciertos_j2"] . " aciertos\n";
+            echo "***************************************\n\n";
+            break;
+        }
+    }
+
+    if (!$encontro) {
+        echo "\nEl jugador $nombre no ganó ningún juego.\n\n";
+    }
+}
 
 //1) 
 function cargarJuegos (){
@@ -166,7 +207,7 @@ do {
 
         case 3: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
-
+            mostrarPrimerJuegoGanado($partida);
             break;
         
         case 0: 
