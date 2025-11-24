@@ -139,7 +139,7 @@ function indicePrimerJuegoGanado($partidas, $nombre) {
  * @param string $nombreJugador
  * @return array
  */
-function resumenJugador (array $juegos, string $nombreJugador){
+function resumenJugador (array $iniciarJuego, string $nombreJugador){
 
     $ganados = 0;
     $perdidos = 0;
@@ -148,9 +148,9 @@ function resumenJugador (array $juegos, string $nombreJugador){
     $aciertos = 0;
     
     // recorrer todas las partidas
-    for ($i = 0; $i < count($juegos); $i++) {
+    for ($i = 0; $i < count($iniciarJuego); $i++) {
 
-        $p = $juegos[$i];
+        $p = $iniciarJuego[$i];
 
         // ¿el jugador participó?
         if ($p["jugador1"] == $nombreJugador) {
