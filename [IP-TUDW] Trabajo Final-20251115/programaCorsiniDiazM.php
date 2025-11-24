@@ -102,6 +102,37 @@ function primerJuegoGanado(array $Juegos, string $nombreJuegador){
     return $indice;
 }
 
+// 6)
+/**
+ * Retorna el índice del primer juego ganado por el jugador dado.
+ * Si no ganó ningún juego, retorna -1.
+ * @param array $partidas
+ * @param string $nombre
+ * @return int
+ */
+function obtenerIndicePrimerJuegoGanado($partidas, $nombre) {
+
+    for ($i = 0; $i < count($partidas); $i++) {
+
+        $jug1 = $partidas[$i]["jugador1"];
+        $jug2 = $partidas[$i]["jugador2"];
+
+        // ganó jugador 1
+        if ($jug1 == $nombre && $partidas[$i]["aciertos1"] > $partidas[$i]["aciertos2"]) {
+            return $i;
+        }
+
+        // ganó jugador 2
+        if ($jug2 == $nombre && $partidas[$i]["aciertos2"] > $partidas[$i]["aciertos1"]) {
+            return $i;
+        }
+    }
+
+    return -1; // no ganó nunca
+}
+
+
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
