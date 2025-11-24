@@ -110,7 +110,7 @@ function primerJuegoGanado(array $Juegos, string $nombreJuegador){
  * @param string $nombre
  * @return int
  */
-function obtenerIndicePrimerJuegoGanado($partidas, $nombre) {
+function indicePrimerJuegoGanado($partidas, $nombre) {
 
     for ($i = 0; $i < count($partidas); $i++) {
 
