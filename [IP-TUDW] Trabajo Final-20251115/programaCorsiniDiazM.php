@@ -33,7 +33,7 @@ include_once("memoria.php");
 function mostrarPrimerJuegoGanado($partidas) {
 
     echo "Ingrese el nombre del jugador a buscar: ";
-    $nombre = ucfirst(strtolower(trim(fgets(STDIN))));
+    $nombre = ucfirst(strtolower(trim(fgets(STDIN)))); // 'ucfirst'-> pone la primera letra en mayúscula ; 'strtolower' -> pasa todo lo ingresado a minúsculas.
     $encontro = false;
 
     foreach ($partidas as $indice => $partida) {
