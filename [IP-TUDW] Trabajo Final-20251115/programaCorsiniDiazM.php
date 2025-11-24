@@ -130,7 +130,7 @@ function agregarJuego(array $juegos, array $unJuego){
     $juegos[count($juegos)]=$unJuego;
 }
 //6)
-function primerJuegoGanado(array $juegos, string $nombreJuegador){
+function primerJuegoGanado(array $juegos, string $nombreJugador){
     /**Lee una colección de juegos y un nombre de jugador y retorna el índice del primer juego ganado por dicho jugador
      * @param int $indice, $cont, $cant
      * @param array $unJuego
@@ -140,9 +140,9 @@ function primerJuegoGanado(array $juegos, string $nombreJuegador){
     $cant=count($juegos);
     while ($cont<$cant && $indice==-1) {
         $unJuego=$juegos[$cont];
-        if ($unJuego["jugador1"]==$nombreJuegador && $unJuego["aciertos1"]>$unJuego["aciertos2"]) {
+        if ($unJuego["jugador1"]==$nombreJugador && $unJuego["aciertos1"]>$unJuego["aciertos2"]) {
             $indice=$cont;    
-        }elseif ($unJuego["jugador2"]==$nombreJuegador && $unJuego["aciertos2"]>$unJuego["aciertos1"]) {
+        }elseif ($unJuego["jugador2"]==$nombreJugador && $unJuego["aciertos2"]>$unJuego["aciertos1"]) {
             $indice=$cont;    
         }
         $cont++;
