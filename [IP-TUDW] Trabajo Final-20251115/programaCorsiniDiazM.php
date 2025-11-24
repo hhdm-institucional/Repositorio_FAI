@@ -108,13 +108,13 @@ function seleccionarOpcion(){
     return $opcion;
 }
 //4)
-function imprimirDatosJuego(array $Juegos, int $indice){
+function imprimirDatosJuego(array $juegos, int $indice){
     /**Dada la colección de juegos y un indice, imprime los datos del juego
      * @param array $unJuego
      * @param string $resultadoUnJuego
      */
                             
-    $unJuego=$Juegos[$indice];
+    $unJuego=$juegos[$indice];
     $resultadoUnJuego=($unJuego["aciertos1"]>$unJuego["aciertos2"]?"ganó jugador 1":($unJuego["aciertos1"]<$unJuego["aciertos2"]?("ganó jugador 2"):("empate")));
     echo "\n**************************************\n".
         "Juego MEMORIA: ".$indice." ".$resultadoUnJuego." \n".
@@ -124,22 +124,22 @@ function imprimirDatosJuego(array $Juegos, int $indice){
                 
 }
 //5)
-function agregarJuego(array $Juegos, array $unJuego){
+function agregarJuego(array $juegos, array $unJuego){
     /** Lee una colección de juegos y un juego, agrega el juego a la colección
      * @return array    */
-    $Juegos[count($Juegos)]=$unJuego;
+    $juegos[count($juegos)]=$unJuego;
 }
 //6)
-function primerJuegoGanado(array $Juegos, string $nombreJuegador){
+function primerJuegoGanado(array $juegos, string $nombreJuegador){
     /**Lee una colección de juegos y un nombre de jugador y retorna el índice del primer juego ganado por dicho jugador
      * @param int $indice, $cont, $cant
      * @param array $unJuego
      * @return int     */
     $indice=-1;
     $cont=0;
-    $cant=count($Juegos);
+    $cant=count($juegos);
     while ($cont<$cant && $indice==-1) {
-        $unJuego=$Juegos[$cont];
+        $unJuego=$juegos[$cont];
         if ($unJuego["jugador1"]==$nombreJuegador && $unJuego["aciertos1"]>$unJuego["aciertos2"]) {
             $indice=$cont;    
         }elseif ($unJuego["jugador2"]==$nombreJuegador && $unJuego["aciertos2"]>$unJuego["aciertos1"]) {
@@ -157,7 +157,7 @@ function primerJuegoGanado(array $Juegos, string $nombreJuegador){
 //Declaración de variables:
 /*
  * @param int $cantJuegos, $opcion, $nroJuego
- * @param array $Juegos, $unJuego 
+ * @param array $juegos, $unJuego 
  * @param string $resultadoUnJuego
  */
 
@@ -167,8 +167,8 @@ $opcion=0;
 $nroJuego=-1;
 $resultadoUnJuego="";
 //Precargado (Punto 11.a)
-$Juegos=cargarJuegos();
-$cantJuegos=count($Juegos); //total de juegos en $Juegos
+$juegos=cargarJuegos();
+$cantJuegos=count($juegos); //total de juegos en $juegos
 
 //Proceso:
 
@@ -187,10 +187,10 @@ do {
         case 1: /* 1) JUGAR A MEMORIA */ 
             /**
              * Al iniciar se solicitan los nombres de los jugadores (lo hace la funcion en memoria.php)
-             * Al finalizar guarda los resultados en una estructura de datos ($Juegos)
+             * Al finalizar guarda los resultados en una estructura de datos ($juegos)
              **/
             $unJuego=jugarMemoria();
-            $Juegos[$cantJuegos]=$unJuego; //Si ya hay 10 juegos, el índice 10 es correcto para guardar el siguiente juego
+            $juegos[$cantJuegos]=$unJuego; //Si ya hay 10 juegos, el índice 10 es correcto para guardar el siguiente juego
             $cantJuegos++;
             //$iniciarJuego = solicitarNombres($juego);
             //$iniciarJuego;
@@ -202,7 +202,7 @@ do {
             /* Se solicita al usuario un número de juego y se lo muestra en pantalla */
             echo "Ingrese un número entre 0 y ".($cantJuegos-1)." \n";
             $nroJuego=solicitarNumeroEntre(0,$cantJuegos-1);
-            imprimirDatosJuego($Juegos, $nroJuego);                
+            imprimirDatosJuego($juegos, $nroJuego);                
             break;
 
         case 3: 
