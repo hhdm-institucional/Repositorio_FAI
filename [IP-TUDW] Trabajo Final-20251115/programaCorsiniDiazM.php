@@ -36,7 +36,7 @@ function mostrarPrimerJuegoGanado($partidas) {
     $nombre = ucfirst(strtolower(trim(fgets(STDIN)))); // 'ucfirst'-> pone la primera letra en mayúscula ; 'strtolower' -> pasa todo lo ingresado a minúsculas.
     $encontro = false;
 
-    foreach ($partidas as $indice => $partida) {
+    foreach ($partidas as $indice => $partida) { //el 'foreach' analiza todos los datos de un arreglo indicado.
 
         // Caso 1: Ganó el jugador 1
         if ($partida["ganador"] == 1 && $partida["jugador1"] == $nombre) {
