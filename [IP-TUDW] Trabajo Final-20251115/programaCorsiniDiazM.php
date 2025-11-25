@@ -145,7 +145,7 @@ function resumenJugador (array $iniciarJuego, string $nombreJugador){
     $perdidos = 0;
     $empatados = 0;
     $acumulado = 0;
-    $aciertos = 0;
+    //$aciertos = 0;
     
     // recorrer todas las partidas
     for ($i = 0; $i < count($iniciarJuego); $i++) {
