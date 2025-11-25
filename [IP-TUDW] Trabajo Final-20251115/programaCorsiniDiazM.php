@@ -13,7 +13,13 @@ include_once("memoria.php");
  * Legajo: 111293. 
  * Carrera: TUDW.
  * Mail: hector.diaz@est.fi.uncoma.edu.ar
- * Usuario Github: hhdm-institucional */
+ * Usuario Github: hhdm-institucional
+ * 
+ * Apéllido, nombre: Corsini, Agustín.
+ * Legajo: FAI-5302. 
+ * Carrera: TUDW.
+ * Mail: agustin.corsini@est.fi.uncoma.edu.ar
+ * Usuario GitHub: AgustinCorsini*/
 
 
 /**************************************/
