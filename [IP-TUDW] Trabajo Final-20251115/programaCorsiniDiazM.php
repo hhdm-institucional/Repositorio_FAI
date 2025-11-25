@@ -203,6 +203,51 @@ function resumenJugador (array $iniciarJuego, string $nombreJugador){
 
 }
 
+// FUNCION AUXILIAR GANADOR DE UN JUEGO 
+function ganador(array $unJuego){
+    /** Recibe unJuego, determina si el ganador es el jugador1 (1) el jugador2(2) o empataron (0)
+     * @param int $ganador
+     * @return int */
+    if ($unJuego["aciertos1"] > $unJuego["aciertos2"]) {
+            $ganador = 1;
+    } elseif ($unJuego["aciertos2"] > $unJuego["aciertos1"]) {
+            $ganador = 2;
+    } else {
+            $ganador = 0; // empate
+    }
+    return $ganador;
+}
+//8
+function cantidadGanados(array $juegos){
+    /**Dado una colección de juegos cuenta y retorna la cantidad de juegos que fueron ganados por algún jugador 
+     * @param int $cont
+     * @return int */
+    $cont=0;
+    foreach ($juegos as $indice => $unJuego) {
+        if (ganador($unJuego)<>0) {
+            $cont++;
+        }
+    }
+    return $cont;
+}
+
+//9
+function cantidadGanadosNroJugador (array $juegos, int $nroJugador){
+    /**Dada una colección de juegos cuenta los ganados por el jugador nroJugador
+     * @param int $ganados
+     * @return int     */
+    $ganados=0;
+    foreach ($juegos as $indice=>$unJuego){
+        if (ganador($unJuego)==$nroJugador) {
+            $ganados++;
+        }
+    }
+    return $ganados;
+}
+
+//10
+
+
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
