@@ -152,32 +152,47 @@ function resumenJugador (array $iniciarJuego, string $nombreJugador){
 
         $p = $iniciarJuego[$i];
 
-        // ¿el jugador participó?
+        // Determinar ganador segun aciertos
+        if ($p["aciertos1"] > $p["aciertos2"]) {
+            $gano = 1;
+        } elseif ($p["aciertos2"] > $p["aciertos1"]) {
+            $gano = 2;
+        } else {
+            $gano = 0; // empate
+        }
+
+        // ¿El jugador participó en esta partida?
         if ($p["jugador1"] == $nombreJugador) {
 
-            if ($p["gano"] == 1) {
-                $ganados++;
-            } elseif ($p["gano"] == 2) {
-                $perdidos++;
-            } else {
-                $empatados++;
-            }
-
+            // acumula aciertos
             $acumulado = $acumulado + $p["aciertos1"];
-        }else if ($p["jugador2"] == $nombreJugador) {
 
-            if ($p["gano"] == 2) {
+            // resultado
+            if ($gano == 1) {
                 $ganados++;
-            } elseif ($p["gano"] == 1) {
+            } elseif ($gano == 2) {
                 $perdidos++;
             } else {
                 $empatados++;
             }
+        }
 
+        elseif ($p["jugador2"] == $nombreJugador) {
+
+            // acumula aciertos
             $acumulado = $acumulado + $p["aciertos2"];
+
+            // resultado
+            if ($gano == 2) {
+                $ganados++;
+            } elseif ($gano == 1) {
+                $perdidos++;
+            } else {
+                $empatados++;
+            }
         }
     }
-    
+
     return [
         "jugador" => $nombreJugador,
         "ganados" => $ganados,
