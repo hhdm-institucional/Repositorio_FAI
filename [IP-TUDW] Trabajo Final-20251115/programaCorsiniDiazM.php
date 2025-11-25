@@ -133,6 +133,8 @@ function obtenerIndicePrimerJuegoGanado($partidas, $nombre) {
 
 
 
+
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
