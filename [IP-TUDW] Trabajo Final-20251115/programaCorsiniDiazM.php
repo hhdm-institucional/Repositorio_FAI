@@ -61,7 +61,10 @@ function seleccionarOpcion(){
         "1) Jugar Memoria \n".
         "2) Mostrar un juego \n".
         "3) Mostrar el primer juego ganador \n".
-        "4) Mostrara el porcentaje de juegos ganados \n"
+        "4) Mostrar el porcentaje de juegos ganados \n".
+        "5) Mostrar resumen del jugador \n".
+        "6) Mostrar listado de juegos ordenado por jugador 2 \n".
+        "7) Salir \n"
         ;
 
     $opcion =solicitarNumeroEntre(0,4); // A modificar $max cuando se agregen mas opciones 
