@@ -58,11 +58,11 @@ function seleccionarOpcion(){
      * @return int       */
     
     echo "Ingrese una de las opciones del menú (0 para salir): \n". //LA ULTIMA OPCION DEBE SER SALIR
-         "1) Jugar Memoria \n".
-         "2) Mostrar un juego \n".
-         "3) Mostrar el primer juego ganador \n".
-         "4) Mostrara el porcentaje de juegos ganados \n"
-         ;
+        "1) Jugar Memoria \n".
+        "2) Mostrar un juego \n".
+        "3) Mostrar el primer juego ganador \n".
+        "4) Mostrara el porcentaje de juegos ganados \n"
+        ;
 
     $opcion =solicitarNumeroEntre(0,4); // A modificar $max cuando se agregen mas opciones 
     /* 
@@ -340,11 +340,23 @@ do {
             echo "El jugador ".$nroJugador." ganó el ".$porcentaje."% de los juegos ganados. \n";
             break;
         
-        case 0: 
+        case 5:
+            echo "\n--- MOSTRAR RESUMEN DEL JUGADOR ---\n";
+            echo "Ingrese el nombre del jugador: ";
+            $nombreJugador = trim(fgets(STDIN));
+
+            resumenJugador($juegos, $nombreJugador);
+            break;
+        
+        case 6:
+            ordenarPorJugador2($juegos); // usa usort + print_r
+            break;
+
+        case 7: 
             echo "Saliendo...\n";
             break;
         default:
             echo "Opción invalida... \n";
             break;
     }
-} while ($opcion != 0);
+} while ($opcion != 7);
