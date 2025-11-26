@@ -57,7 +57,7 @@ function seleccionarOpcion(){
      * @param int $opcion 
      * @return int       */
     
-    echo "Ingrese una de las opciones del menú (0 para salir): \n". //LA ULTIMA OPCION DEBE SER SALIR
+    echo "Ingrese una de las opciones del menú (7 para salir): \n". //LA ULTIMA OPCION DEBE SER SALIR
         "1) Jugar Memoria \n".
         "2) Mostrar un juego \n".
         "3) Mostrar el primer juego ganador \n".
