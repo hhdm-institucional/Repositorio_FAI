@@ -224,7 +224,7 @@ function cantidadGanados(array $juegos){
      * @return int */
     $cont=0;
     foreach ($juegos as $indice => $unJuego) {
-        if (ganador($unJuego)<>0) {
+        if (ganador($unJuego)!=0) {
             $cont++;
         }
     }
