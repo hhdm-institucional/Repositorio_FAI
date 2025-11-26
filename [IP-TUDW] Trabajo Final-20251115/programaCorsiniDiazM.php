@@ -59,10 +59,12 @@ function seleccionarOpcion(){
     
     echo "Ingrese una de las opciones del menú (0 para salir): \n". //LA ULTIMA OPCION DEBE SER SALIR
          "1) Jugar Memoria \n".
-         "2) Mostrar un juego \n"
+         "2) Mostrar un juego \n".
+         "3) Mostrar el primer juego ganador \n".
+         "4) Mostrara el porcentaje de juegos ganados \n"
          ;
 
-    $opcion =solicitarNumeroEntre(0,2); // A modificar $max cuando se agregen mas opciones 
+    $opcion =solicitarNumeroEntre(0,4); // A modificar $max cuando se agregen mas opciones 
     /* 
     echo "Ingrese una de las opciones del menú (0 para salir):\n";
     echo "1) Jugar Memoria\n";
@@ -265,7 +267,7 @@ function cmp(array $juego1, array $juego2){
     }
     return $orden;
 }
-
+//
 
 
 /**************************************/
@@ -274,9 +276,10 @@ function cmp(array $juego1, array $juego2){
 
 //Declaración de variables:
 /*
- * @param int $cantjuegos, $opcion, $nroJuego
+ * @param int $cantjuegos, $opcion, $nroJuego, $ganados, $nroJugador
  * @param array $juegos, $unJuego 
- * @param string $resultadoUnJuego
+ * @param string $resultadoUnJuego, $unNombre
+ * @param float $porcentaje
  */
 
 
@@ -284,6 +287,10 @@ function cmp(array $juego1, array $juego2){
 $opcion=0;
 $nroJuego=-1;
 $resultadoUnJuego="";
+$unNombre="";
+$ganados=0;
+$nroJugador=0;
+$porcentaje=0;
 //Precargado (Punto 11.a)
 $juegos=cargarjuegos();
 $cantjuegos=count($juegos); //total de juegos en $juegos
@@ -320,9 +327,19 @@ do {
 
         case 3: 
             /** 3) MOSTRAR EL PRIMER JUEGO GANADOR
-             * 
-             */
-
+             * Se solicita al usuario un nombre de jugador y se muestra por pantalla el primer juego ganado por dicho jugador */
+            echo "Ingrese el nombre del jugador: \n";
+            $unNombre=trim(fgets(STDIN)); // ver de asegurar letra capital 
+            imprimirDatosJuego($juegos, primerJuegoGanado($juegos,$unNombre));           
+            break;
+        case 4:
+            /** 4) MOSTRAR PORCENTAJE DE JUEGOS GANADOS 
+             * Se solicita al usuario un nro de jugador y se imprime una leyenda con el porcentaje de juegos ganados por ese jugador */
+            echo "Ingrese un número de jugador (1 o 2): \n";
+            $nroJugador=solicitarNumeroEntre(1, 2);
+            $ganados=cantidadGanadosNroJugador($juegos,$nroJugador);
+            $porcentaje=($ganados*100)/(cantidadGanados($juegos));
+            echo "El jugador ".$nroJugador." ganó el ".$porcentaje."% de los juegos ganados. \n";
             break;
         
         case 0: 
