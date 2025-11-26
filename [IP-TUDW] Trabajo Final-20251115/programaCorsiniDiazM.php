@@ -164,7 +164,7 @@ function resumenJugador (array $juegos, string $nombreJugador){
         }
 
         // ¿El jugador participó en esta partida?
-        // Si el jugador participó como jugaddor 1 entonces:
+        // Si el jugador participó como jugador 1 entonces:
         if ($p["jugador1"] == $nombreJugador) {
 
             // acumula aciertos
@@ -179,7 +179,7 @@ function resumenJugador (array $juegos, string $nombreJugador){
                 $empatados++;
             }
         }
-        // Si el jugador participó como jugaddor 2 entonces:
+        // Si el jugador participó como jugador 2 entonces:
         elseif ($p["jugador2"] == $nombreJugador) {
 
             // acumula aciertos
