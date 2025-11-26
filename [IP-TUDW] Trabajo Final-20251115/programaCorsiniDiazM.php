@@ -312,6 +312,7 @@ do {
         case 1: /* 1) JUGAR A MEMORIA */ 
             /* Al iniciar se solicitan los nombres de los jugadores (lo hace la funcion en memoria.php)
             * Al finalizar guarda los resultados en una estructura de datos ($juegos)  */
+            echo "\n--- JUGAR A MEMORIA ---\n";
             $unJuego=jugarMemoria();
             $juegos[$cantjuegos]=$unJuego; //Si ya hay 10 juegos, el índice 10 es correcto para guardar el siguiente juego
             $cantjuegos++;
@@ -320,6 +321,7 @@ do {
         case 2: 
             /* 2) MOSTRAR UN JUEGO */
             /* Se solicita al usuario un número de juego y se lo muestra en pantalla */
+            echo "\n--- MOSTRAR UN JUEGO ---\n";
             echo "Ingrese un número entre 0 y ".($cantjuegos-1)." \n";
             $nroJuego=solicitarNumeroEntre(0,$cantjuegos-1);
             imprimirDatosJuego($juegos, $nroJuego);                
@@ -328,6 +330,7 @@ do {
         case 3: 
             /** 3) MOSTRAR EL PRIMER JUEGO GANADOR
              * Se solicita al usuario un nombre de jugador y se muestra por pantalla el primer juego ganado por dicho jugador */
+            echo "\n--- MOSTRAR EL PRIMERO JUEGO GANADOR ---\n";
             echo "Ingrese el nombre del jugador: \n";
             $unNombre=trim(fgets(STDIN)); // ver de asegurar letra capital 
             imprimirDatosJuego($juegos, primerJuegoGanado($juegos,$unNombre));           
@@ -335,6 +338,7 @@ do {
         case 4:
             /** 4) MOSTRAR PORCENTAJE DE JUEGOS GANADOS 
              * Se solicita al usuario un nro de jugador y se imprime una leyenda con el porcentaje de juegos ganados por ese jugador */
+            echo "\n--- MOSTRAR PORCENTAJE DE JUEGOS GANADOS ---\n";
             echo "Ingrese un número de jugador (1 o 2): \n";
             $nroJugador=solicitarNumeroEntre(1, 2);
             $ganados=cantidadGanadosNroJugador($juegos,$nroJugador);
@@ -351,6 +355,7 @@ do {
             break;
         
         case 6:
+            echo "\n--- MOSTRAR LISTADO DE JUEGOS ORDENADOS POR JUGADOR 2 ---\n";
             ordenarPorJugador2($juegos); // usa usort + print_r
             break;
 
