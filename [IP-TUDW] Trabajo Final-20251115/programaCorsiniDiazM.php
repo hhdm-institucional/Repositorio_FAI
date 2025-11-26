@@ -111,7 +111,7 @@ function agregarJuego(array $juegos, array $unJuego){
     $juegos[count($juegos)]=$unJuego;
 }
 //6)
-function primerJuegoGanado(array $juegos, string $nombreJuegador){
+function primerJuegoGanado(array $juegos, string $nombreJugador){
     /**Lee una colección de juegos y un nombre de jugador y retorna el índice del primer juego ganado por dicho jugador
      * @param int $indice, $cont, $cant
      * @param array $unJuego
@@ -121,43 +121,14 @@ function primerJuegoGanado(array $juegos, string $nombreJuegador){
     $cant=count($juegos);
     while ($cont<$cant && $indice==-1) {
         $unJuego=$juegos[$cont];
-        if ($unJuego["jugador1"]==$nombreJuegador && $unJuego["aciertos1"]>$unJuego["aciertos2"]) {
+        if ($unJuego["jugador1"]==$nombreJugador && $unJuego["aciertos1"]>$unJuego["aciertos2"]) {
             $indice=$cont;    
-        }elseif ($unJuego["jugador2"]==$nombreJuegador && $unJuego["aciertos2"]>$unJuego["aciertos1"]) {
+        }elseif ($unJuego["jugador2"]==$nombreJugador && $unJuego["aciertos2"]>$unJuego["aciertos1"]) {
             $indice=$cont;    
         }
         $cont++;
     }
     return $indice;
-}
-
-// 6)
-/**
- * Retorna el índice del primer juego ganado por el jugador dado.
- * Si no ganó ningún juego, retorna -1.
- * @param array $partidas
- * @param string $nombre
- * @return int
- */
-function indicePrimerJuegoGanado($partidas, $nombre) {
-
-    for ($i = 0; $i < count($partidas); $i++) {
-
-        $jug1 = $partidas[$i]["jugador1"];
-        $jug2 = $partidas[$i]["jugador2"];
-
-        // ganó jugador 1
-        if ($jug1 == $nombre && $partidas[$i]["aciertos1"] > $partidas[$i]["aciertos2"]) {
-            return $i;
-        }
-
-        // ganó jugador 2
-        if ($jug2 == $nombre && $partidas[$i]["aciertos2"] > $partidas[$i]["aciertos1"]) {
-            return $i;
-        }
-    }
-
-    return -1; // no ganó nunca
 }
 
 // 7)
