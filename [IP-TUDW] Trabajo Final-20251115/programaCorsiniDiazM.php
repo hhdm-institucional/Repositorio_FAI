@@ -67,16 +67,15 @@ function seleccionarOpcion(){
         "7) Salir \n"
         ;
 
-    $opcion =solicitarNumeroEntre(0,4); // A modificar $max cuando se agregen mas opciones 
+    $opcion =solicitarNumeroEntre(1,7); // A modificar $max cuando se agregen mas opciones 
     /* 
-    echo "Ingrese una de las opciones del menú (0 para salir):\n";
-    echo "1) Jugar Memoria\n";
-    echo "2) Mostrar un juego\n";
-    echo "3) Mostrar primer juego ganado\n";
-    echo "4) Mostrar resumen de jugador\n";
-    echo "5) Agregar un juego nuevo\n";
-    echo "0) Salir\n";
-
+    "1) Jugar Memoria \n".
+    "2) Mostrar un juego \n".
+    "3) Mostrar el primer juego ganador \n".
+    "4) Mostrar el porcentaje de juegos ganados \n".
+    "5) Mostrar resumen del jugador \n".
+    "6) Mostrar listado de juegos ordenado por jugador 2 \n".
+    "7) Salir \n"
     $opcion = solicitarNumeroEntre(0, 5);
     */
     return $opcion;
