@@ -139,7 +139,7 @@ function primerJuegoGanado(array $juegos, string $nombreJugador){
  * @param string $nombreJugador
  * @return array
  */
-function resumenJugador (array $iniciarJuego, string $nombreJugador){
+function resumenJugador (array $juegos, string $nombreJugador){
 
     $ganados = 0;
     $perdidos = 0;
@@ -148,20 +148,21 @@ function resumenJugador (array $iniciarJuego, string $nombreJugador){
     //$aciertos = 0;
     
     // recorrer todas las partidas
-    for ($i = 0; $i < count($iniciarJuego); $i++) {
+    for ($i = 0; $i < count($juegos); $i++) {
 
-        $p = $iniciarJuego[$i];
+        $p = $juegos[$i];
 
         // Determinar ganador segun aciertos
         if ($p["aciertos1"] > $p["aciertos2"]) {
-            $gano = 1;
+            $gano = 1;  //ganó como jugador 1
         } elseif ($p["aciertos2"] > $p["aciertos1"]) {
-            $gano = 2;
+            $gano = 2;  //ganó como jugador 2
         } else {
             $gano = 0; // empate
         }
 
         // ¿El jugador participó en esta partida?
+        // Si el jugador participó como jugaddor 1 entonces:
         if ($p["jugador1"] == $nombreJugador) {
 
             // acumula aciertos
@@ -176,7 +177,7 @@ function resumenJugador (array $iniciarJuego, string $nombreJugador){
                 $empatados++;
             }
         }
-
+        // Si el jugador participó como jugaddor 2 entonces:
         elseif ($p["jugador2"] == $nombreJugador) {
 
             // acumula aciertos
