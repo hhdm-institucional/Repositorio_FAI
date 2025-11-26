@@ -13,7 +13,13 @@ include_once("memoria.php");
  * Legajo: 111293. 
  * Carrera: TUDW.
  * Mail: hector.diaz@est.fi.uncoma.edu.ar
- * Usuario Github: hhdm-institucional */
+ * Usuario Github: hhdm-institucional
+ * 
+ * Apéllido, nombre: Corsini, Agustín.
+ * Legajo: FAI-5302. 
+ * Carrera: TUDW.
+ * Mail: agustin.corsini@est.fi.uncoma.edu.ar
+ * Usuario GitHub: AgustinCorsini*/
 
 
 /**************************************/
@@ -57,6 +63,17 @@ function seleccionarOpcion(){
          ;
 
     $opcion =solicitarNumeroEntre(0,2); // A modificar $max cuando se agregen mas opciones 
+    /* 
+    echo "Ingrese una de las opciones del menú (0 para salir):\n";
+    echo "1) Jugar Memoria\n";
+    echo "2) Mostrar un juego\n";
+    echo "3) Mostrar primer juego ganado\n";
+    echo "4) Mostrar resumen de jugador\n";
+    echo "5) Agregar un juego nuevo\n";
+    echo "0) Salir\n";
+
+    $opcion = solicitarNumeroEntre(0, 5);
+    */
     return $opcion;
 }
 //4)
@@ -68,6 +85,18 @@ function imprimirDatosJuego(array $juegos, int $indice){
                             
     $unJuego=$juegos[$indice];
     $resultadoUnJuego=($unJuego["aciertos1"]>$unJuego["aciertos2"]?"ganó jugador 1":($unJuego["aciertos1"]<$unJuego["aciertos2"]?("ganó jugador 2"):("empate")));
+    
+    /*
+    if ($unJuego["aciertos1"] > $unJuego["aciertos2"]) {
+        $resultado = "Ganó jugador 1";
+    } elseif ($unJuego["aciertos2"] > $unJuego["aciertos1"]) {
+        $resultado = "Ganó jugador 2";
+    } else {
+        $resultado = "Empate";
+    }
+
+    */
+    
     echo "\n**************************************\n".
         "Juego MEMORIA: ".$indice." ".$resultadoUnJuego." \n".
         "Jugador 1: ".$unJuego["jugador1"]." obtuvo ".$unJuego["aciertos1"]." aciertos \n".//ver de poner el nombre en uppercase
@@ -82,7 +111,7 @@ function agregarJuego(array $juegos, array $unJuego){
     $juegos[count($juegos)]=$unJuego;
 }
 //6)
-function primerJuegoGanado(array $juegos, string $nombreJuegador){
+function primerJuegoGanado(array $juegos, string $nombreJugador){
     /**Lee una colección de juegos y un nombre de jugador y retorna el índice del primer juego ganado por dicho jugador
      * @param int $indice, $cont, $cant
      * @param array $unJuego
@@ -92,43 +121,14 @@ function primerJuegoGanado(array $juegos, string $nombreJuegador){
     $cant=count($juegos);
     while ($cont<$cant && $indice==-1) {
         $unJuego=$juegos[$cont];
-        if ($unJuego["jugador1"]==$nombreJuegador && $unJuego["aciertos1"]>$unJuego["aciertos2"]) {
+        if ($unJuego["jugador1"]==$nombreJugador && $unJuego["aciertos1"]>$unJuego["aciertos2"]) {
             $indice=$cont;    
-        }elseif ($unJuego["jugador2"]==$nombreJuegador && $unJuego["aciertos2"]>$unJuego["aciertos1"]) {
+        }elseif ($unJuego["jugador2"]==$nombreJugador && $unJuego["aciertos2"]>$unJuego["aciertos1"]) {
             $indice=$cont;    
         }
         $cont++;
     }
     return $indice;
-}
-
-// 6)
-/**
- * Retorna el índice del primer juego ganado por el jugador dado.
- * Si no ganó ningún juego, retorna -1.
- * @param array $partidas
- * @param string $nombre
- * @return int
- */
-function indicePrimerJuegoGanado($partidas, $nombre) {
-
-    for ($i = 0; $i < count($partidas); $i++) {
-
-        $jug1 = $partidas[$i]["jugador1"];
-        $jug2 = $partidas[$i]["jugador2"];
-
-        // ganó jugador 1
-        if ($jug1 == $nombre && $partidas[$i]["aciertos1"] > $partidas[$i]["aciertos2"]) {
-            return $i;
-        }
-
-        // ganó jugador 2
-        if ($jug2 == $nombre && $partidas[$i]["aciertos2"] > $partidas[$i]["aciertos1"]) {
-            return $i;
-        }
-    }
-
-    return -1; // no ganó nunca
 }
 
 // 7)
