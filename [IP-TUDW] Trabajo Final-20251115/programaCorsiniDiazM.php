@@ -85,6 +85,18 @@ function imprimirDatosJuego(array $juegos, int $indice){
                             
     $unJuego=$juegos[$indice];
     $resultadoUnJuego=($unJuego["aciertos1"]>$unJuego["aciertos2"]?"ganó jugador 1":($unJuego["aciertos1"]<$unJuego["aciertos2"]?("ganó jugador 2"):("empate")));
+    
+    /*
+    if ($unJuego["aciertos1"] > $unJuego["aciertos2"]) {
+        $resultado = "Ganó jugador 1";
+    } elseif ($unJuego["aciertos2"] > $unJuego["aciertos1"]) {
+        $resultado = "Ganó jugador 2";
+    } else {
+        $resultado = "Empate";
+    }
+
+    */
+    
     echo "\n**************************************\n".
         "Juego MEMORIA: ".$indice." ".$resultadoUnJuego." \n".
         "Jugador 1: ".$unJuego["jugador1"]." obtuvo ".$unJuego["aciertos1"]." aciertos \n".//ver de poner el nombre en uppercase
