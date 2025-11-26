@@ -246,6 +246,25 @@ function cantidadGanadosNroJugador (array $juegos, int $nroJugador){
 }
 
 //10
+function ordenarPorJugador2 (array $juegos){
+    /**Dada una colección de juegos, muestra la colección de juegos ordenada por Jugador2  */
+    uasort($juegos,'cmp');
+    print_r($juegos);
+} 
+function cmp(array $juego1, array $juego2){
+    /**Funcion de comparación entre dos juegos  
+     * @param int orden
+     * @ruturn int    */
+
+    if($juego1["jugador2"]==$juego2["jugador2"]){
+        $orden=0;
+    }elseif ($juego1["jugador2"]<$juego2["jugador2"]) {
+        $orden=-1;
+    }else{
+        $orden=1;
+    }
+    return $orden;
+}
 
 
 
@@ -300,7 +319,9 @@ do {
             break;
 
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            /** 3) MOSTRAR EL PRIMER JUEGO GANADOR
+             * 
+             */
 
             break;
         
