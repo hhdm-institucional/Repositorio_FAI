@@ -336,12 +336,24 @@ do {
             break;
         
         case 5:
-            echo "\n--- MOSTRAR RESUMEN DEL JUGADOR ---\n";
-            echo "Ingrese el nombre del jugador: ";
-            $nombreJugador = ucfirst(strtolower(trim(fgets(STDIN))));
-            
-            resumenJugador($juegos, $nombreJugador);
-            break;
+        echo "\n--- MOSTRAR RESUMEN DEL JUGADOR ---\n";
+        echo "Ingrese el nombre del jugador: ";
+        // normalizamos el nombre tal como guardás los nombres en los juegos
+        $nombreJugador = ucfirst(strtolower(trim(fgets(STDIN))));
+
+        // capturamos el array que retorna la función
+        $resumen = resumenJugador($juegos, $nombreJugador);
+
+        // mostramos el resumen formateado
+        echo "**************************************\n";
+        echo "Jugador: " . strtoupper($resumen['jugador']) . "\n";
+        echo "Ganó: " . $resumen['ganados'] . " juegos\n";
+        echo "Perdió: " . $resumen['perdidos'] . " juegos\n";
+        echo "Empató: " . $resumen['empatados'] . " juegos\n";
+        echo "Total de aciertos acumulados: " . $resumen['aciertos'] . " aciertos\n";
+        echo "**************************************\n\n";
+        break;
+
         
         case 6:
             echo "\n--- MOSTRAR LISTADO DE JUEGOS ORDENADOS POR JUGADOR 2 ---\n";
