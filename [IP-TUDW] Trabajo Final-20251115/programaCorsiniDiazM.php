@@ -92,7 +92,7 @@ function imprimirDatosJuego(array $juegos, int $indice){
     */
     
     echo "\n**************************************\n".
-        "Juego MEMORIA: ".$indice." ".$resultadoUnJuego." \n".
+        "Juego MEMORIA: ".$indice.", ".$resultadoUnJuego." \n".
         "Jugador 1: ".$unJuego["jugador1"]." obtuvo ".$unJuego["aciertos1"]." aciertos \n".//ver de poner el nombre en uppercase
         "Jugador 2: ".$unJuego["jugador2"]." obtuvo ".$unJuego["aciertos2"]." aciertos \n".
         "**************************************\n\n";  
