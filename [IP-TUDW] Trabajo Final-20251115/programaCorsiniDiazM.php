@@ -338,8 +338,8 @@ do {
         case 5:
             echo "\n--- MOSTRAR RESUMEN DEL JUGADOR ---\n";
             echo "Ingrese el nombre del jugador: ";
-            $nombreJugador = trim(fgets(STDIN));
-
+            $nombreJugador = ucfirst(strtolower(trim(fgets(STDIN))));
+            
             resumenJugador($juegos, $nombreJugador);
             break;
         
