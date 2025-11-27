@@ -316,14 +316,21 @@ do {
             imprimirDatosJuego($juegos, $nroJuego);                
             break;
 
-        case 3: 
-            /** 3) MOSTRAR EL PRIMER JUEGO GANADOR
-             * Se solicita al usuario un nombre de jugador y se muestra por pantalla el primer juego ganado por dicho jugador */
-            echo "\n--- MOSTRAR EL PRIMERO JUEGO GANADOR ---\n";
-            echo "Ingrese el nombre del jugador: \n";
-            $unNombre=trim(fgets(STDIN)); // ver de asegurar letra capital 
-            imprimirDatosJuego($juegos, primerJuegoGanado($juegos,$unNombre));           
+        case 3:
+            echo "\n--- MOSTRAR EL PRIMER JUEGO GANADOR ---\n";
+            echo "Ingrese el nombre del jugador:\n";
+            $unNombre = ucfirst(strtolower(trim(fgets(STDIN))));
+
+
+            $indice = primerJuegoGanado($juegos, $unNombre);
+
+            if ($indice == -1) {
+                echo "El jugador '$unNombre' no ganó ningún juego.\n";
+            } else {
+                imprimirDatosJuego($juegos, $indice);
+            }
             break;
+
         case 4:
             /** 4) MOSTRAR PORCENTAJE DE JUEGOS GANADOS 
              * Se solicita al usuario un nro de jugador y se imprime una leyenda con el porcentaje de juegos ganados por ese jugador */
