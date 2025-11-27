@@ -139,7 +139,8 @@ function primerJuegoGanado(array $juegos, string $nombreJugador){
 function ganador(array $unJuego){
     /** Recibe unJuego, determina si el ganador es el jugador1 (1) el jugador2(2) o empataron (0)
      * @param int $ganador
-     * @return int */
+     * @return int 
+     */
     if ($unJuego["aciertos1"] > $unJuego["aciertos2"]) {
             $ganador = 1;
     } elseif ($unJuego["aciertos2"] > $unJuego["aciertos1"]) {
