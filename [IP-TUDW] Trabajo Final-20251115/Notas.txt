@@ -7,6 +7,39 @@ Funciones creadas hasta el momento:
 -seleccionarOpcion(): Menu que internamente usa solicitarNumeroEntre() para seleccionar una opcion correcta del menu  
 -imprimirDatosJuego: imprime los datos de un juego 
 
+otras formas
+//4
+$unJuego=$juegos[$indice];
+    $resultadoUnJuego=($unJuego["aciertos1"]>$unJuego["aciertos2"]?"ganó jugador 1":($unJuego["aciertos1"]<$unJuego["aciertos2"]?("ganó jugador 2"):("empate")));
+    $resultadoUnJuego=(ganador($unJuego)==1?"ganó jugador 1":(ganador($unJuego)==2?"ganó jugador 2":"empate"));
+    /*
+    if ($unJuego["aciertos1"] > $unJuego["aciertos2"]) {
+        $resultado = "Ganó jugador 1";
+    } elseif ($unJuego["aciertos2"] > $unJuego["aciertos1"]) {
+        $resultado = "Ganó jugador 2";
+    } else {
+        $resultado = "Empate";
+    }
+//1 
+  /**Carga 10 o más juegos predefinidos en una colección de juegos
+     * @param array $coleccionjuegos, $unJuego, $nombres
+     * @param int $aciertos1, $aciertos2, $empates, $total
+     * @return $array 
+     */
+    /* H: Explicación: uso un array de nombres para crear nombres aleatorios.
+     Uso un for para cargar la colección de juegos. */
+    $coleccionjuegos=array();  
+    $nombres=array("Sofía", "Alejandro", "María", "Sebastián", "Valentina", "Diego");
+
+    for ($i=0; $i < 10; $i++) { 
+        $total=random_int(3,8); // mínimo 3 juegos y máximo 8, lo humanamente razonable
+        $empates=random_int(0,3); // establesco hasta 3 empates
+        $aciertos1=random_int(0,($total-$empates)); // random entre los totales y los ya empatados  
+        $aciertos2=$total-$aciertos1-$empates; // los restantes son aciertos 2
+        $unJuego=array("jugador1"=>$nombres[random_int(0,5)], "aciertos1"=>$aciertos1,"jugador2"=>$nombres[random_int(0,5)], "aciertos2"=>$aciertos2);
+        $coleccionjuegos[$i]=$unJuego;
+    }
+
 ESTRUCTURAS
 ***************************************
 Las estructuras son los arreglos que vamos creando y en la que vamos almacenando datos.
