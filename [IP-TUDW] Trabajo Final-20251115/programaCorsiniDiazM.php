@@ -334,7 +334,7 @@ do {
     switch ($opcion) {
         case 1: /* 1) JUGAR A MEMORIA */ 
             /* Al iniciar se solicitan los nombres de los jugadores (lo hace la funcion en memoria.php)
-            * Al finalizar guarda los resultados en una estructura de datos ($juegos)  */
+            /* Al finalizar guarda los resultados en una estructura de datos ($juegos) */
             echo "\n--- JUGAR A MEMORIA ---\n";
             $unJuego=jugarMemoria();
             agregarJuego($juegos,$unJuego); 
