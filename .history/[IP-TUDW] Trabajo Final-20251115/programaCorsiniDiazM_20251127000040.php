@@ -140,31 +140,21 @@ function ganador(array $unJuego){
     return $ganador;
 }
 
-<<<<<<< HEAD
-// 7)
-/**
- * Función que dada la colección de juegos y el nombre de un jugador
-=======
+
 //7)
 /**
  * Función que dada la colleción de juegos y el nombre de un jugador
->>>>>>> 017b9632643425cbefc38e3fc96c41c6e2ec1931
  * retorna el resumen del jugador.
  * @param array $juegos
  * @param string $nombreJugador
  * @return array
  */
-<<<<<<< HEAD
-function resumenJugador(array $juegos, string $nombreJugador) {
-=======
-function resumenJugador (array $juegos, string $nombreJugador){
->>>>>>> 017b9632643425cbefc38e3fc96c41c6e2ec1931
 
+function resumenJugador (array $juegos, string $nombreJugador){
     $ganados = 0;
     $perdidos = 0;
     $empatados = 0;
     $acumulado = 0;
-<<<<<<< HEAD
 
     for ($i = 0; $i < count($juegos); $i++) {
         $p = $juegos[$i];
@@ -177,44 +167,10 @@ function resumenJugador (array $juegos, string $nombreJugador){
             if ($g == 1) {
                 $ganados++;
             } elseif ($g == 2) {
-=======
-    //$aciertos = 0;
-    
-    // recorrer todas las partidas
-    for ($i = 0; $i < count($juegos); $i++) {
-
-        $p = $juegos[$i];
-
-        // Determinar ganador segun aciertos
-
-        $gano=ganador($p);
-
-        /*
-        if ($p["aciertos1"] > $p["aciertos2"]) {
-            $gano = 1;  //ganó como jugador 1
-        } elseif ($p["aciertos2"] > $p["aciertos1"]) {
-            $gano = 2;  //ganó como jugador 2
-        } else {
-            $gano = 0; // empate
-        }
-        */
-
-        // ¿El jugador participó en esta partida?
-        if ($p["jugador1"] == $nombreJugador) { // Si el jugador participó como jugador 1 entonces:
-
-            // acumula aciertos
-            $acumulado = $acumulado + $p["aciertos1"];
-
-            // resultado
-            if ($gano == 1) {
-                $ganados++;
-            } elseif ($gano == 2) {
->>>>>>> 017b9632643425cbefc38e3fc96c41c6e2ec1931
                 $perdidos++;
             } else {
                 $empatados++;
             }
-<<<<<<< HEAD
         }
         // ¿Jugó como jugador2?
         elseif ($p["jugador2"] == $nombreJugador) {
@@ -224,17 +180,6 @@ function resumenJugador (array $juegos, string $nombreJugador){
             if ($g == 2) {
                 $ganados++;
             } elseif ($g == 1) {
-=======
-        } elseif ($p["jugador2"] == $nombreJugador) { // Si el jugador participó como jugador 2 entonces:
-
-            // acumula aciertos
-            $acumulado = $acumulado + $p["aciertos2"];
-
-            // resultado
-            if ($gano == 2) {
-                $ganados++;
-            } elseif ($gano == 1) {
->>>>>>> 017b9632643425cbefc38e3fc96c41c6e2ec1931
                 $perdidos++;
             } else {
                 $empatados++;
@@ -249,16 +194,10 @@ function resumenJugador (array $juegos, string $nombreJugador){
         "empatados" => $empatados,
         "aciertos" => $acumulado
     ];
-<<<<<<< HEAD
 }
 
 
 
-=======
-
-}
-
->>>>>>> 017b9632643425cbefc38e3fc96c41c6e2ec1931
 //8
 function cantidadGanados(array $juegos){
     /**Dado una colección de juegos cuenta y retorna la cantidad de juegos que fueron ganados por algún jugador 

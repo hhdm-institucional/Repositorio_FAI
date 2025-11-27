@@ -61,7 +61,7 @@ function seleccionarOpcion(){
         "1) Jugar Memoria \n".
         "2) Mostrar un juego \n".
         "3) Mostrar el primer juego ganador \n".
-        "4) Mostrar el porcentaje de juegos ganados \n"
+        "4) Mostrar el porcentaje de juegos ganados \n".
         "5) Mostrar resumen del jugador"
         ;
 
