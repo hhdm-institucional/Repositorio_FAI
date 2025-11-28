@@ -214,7 +214,7 @@ function resumenJugador(array $juegos, string $nombreJugador) {
         $p = $juegos[$i];
 
         // Determinar ganador según aciertos
-        $g=ganador($p);
+        $g=($p);
 
         // ¿El jugador participó en esta partida?
         if ($p["jugador1"] == $nombreJugador) {
@@ -253,7 +253,7 @@ function resumenJugador(array $juegos, string $nombreJugador) {
 //8
 function cantidadGanados(array $juegos){
     /**Dado una colección de juegos cuenta y retorna la cantidad de juegos que fueron ganados por algún jugador 
-     * @param int $cont
+     * @param array $juegos
      * @return int */
     $cont=0;
     foreach ($juegos as $indice => $unJuego) {
