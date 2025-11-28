@@ -135,6 +135,22 @@ function seleccionarOpcion(){
     $opcion =solicitarNumeroEntre(1,7); 
     return $opcion;
 }
+
+// FUNCION AUXILIAR GANADOR DE UN JUEGO 
+function ganador(array $unJuego){
+    /** Recibe unJuego, determina si el ganador es el jugador1 (1) el jugador2(2) o empataron (0)
+     * @param int $ganador
+     * @return int */
+    if ($unJuego["aciertos1"] > $unJuego["aciertos2"]) {
+            $ganador = 1;
+    } elseif ($unJuego["aciertos2"] > $unJuego["aciertos1"]) {
+            $ganador = 2;
+    } else {
+            $ganador = 0; // empate
+    }
+    return $ganador;
+}
+
 //4)
 function imprimirDatosJuego(array $juegos, int $indice){
      /**Dada la colección de juegos y un indice, imprime los datos del juego
@@ -167,36 +183,21 @@ function primerJuegoGanado(array $juegos, string $nombreJugador){
     $cant=count($juegos);
     while ($cont<$cant && $indice==-1) {
         $unJuego=$juegos[$cont];
-        if ($unJuego["jugador1"]==$nombreJugador && $unJuego["aciertos1"]>$unJuego["aciertos2"]) {
+        if ($unJuego["jugador1"]==$nombreJugador && ganador($unJuego)==1) {
             $indice=$cont;    
-        }elseif ($unJuego["jugador2"]==$nombreJugador && $unJuego["aciertos2"]>$unJuego["aciertos1"]) {
+        }elseif ($unJuego["jugador2"]==$nombreJugador && ganador($unJuego)==2) {
             $indice=$cont;    
         }
         $cont++;
     }
     return $indice;
 }
-
-// FUNCION AUXILIAR GANADOR DE UN JUEGO 
-function ganador(array $unJuego){
-    /** Recibe unJuego, determina si el ganador es el jugador1 (1) el jugador2(2) o empataron (0)
-     * @param int $ganador
-     * @return int */
-    if ($unJuego["aciertos1"] > $unJuego["aciertos2"]) {
-            $ganador = 1;
-    } elseif ($unJuego["aciertos2"] > $unJuego["aciertos1"]) {
-            $ganador = 2;
-    } else {
-            $ganador = 0; // empate
-    }
-    return $ganador;
-}
-
 //7)
 /**
  * Función que dada la colección de juegos y el nombre de un jugador
  * retorna el resumen del jugador.
  * @param array $juegos
+ * @param int $g, $ganados, $perdidos, $empatados, $acumulados
  * @param string $nombreJugador
  * @return array
  */
@@ -206,17 +207,17 @@ function resumenJugador(array $juegos, string $nombreJugador) {
     $perdidos = 0;
     $empatados = 0;
     $acumulado = 0;
+    $g=-1; // inicializo con un valor distinto al de las posibilidades 
 
     for ($i = 0; $i < count($juegos); $i++) {
         $p = $juegos[$i];
 
-        // Determinar ganador segun aciertos
-        $gano=ganador($p);
+        // Determinar ganador según aciertos
+        $g=ganador($p);
 
         // ¿El jugador participó en esta partida?
         if ($p["jugador1"] == $nombreJugador) {
             $acumulado += $p["aciertos1"];
-            $g = ganador($p);
 
             if ($g == 1) {
                 $ganados++;
@@ -229,7 +230,6 @@ function resumenJugador(array $juegos, string $nombreJugador) {
         // ¿Jugó como jugador2?
         elseif ($p["jugador2"] == $nombreJugador) {
             $acumulado += $p["aciertos2"];
-            $g = ganador($p);
 
             if ($g == 2) {
                 $ganados++;
@@ -249,9 +249,6 @@ function resumenJugador(array $juegos, string $nombreJugador) {
         "aciertos" => $acumulado
     ];
 }
-
-
-
 //8
 function cantidadGanados(array $juegos){
     /**Dado una colección de juegos cuenta y retorna la cantidad de juegos que fueron ganados por algún jugador 
@@ -265,7 +262,6 @@ function cantidadGanados(array $juegos){
     }
     return $cont;
 }
-
 //9
 function cantidadGanadosNroJugador (array $juegos, int $nroJugador){
     /**Dada una colección de juegos cuenta los ganados por el jugador nroJugador
@@ -279,7 +275,6 @@ function cantidadGanadosNroJugador (array $juegos, int $nroJugador){
     }
     return $ganados;
 }
-
 //10
 function ordenarPorJugador2 (array $juegos){
     /**Dada una colección de juegos, muestra la colección de juegos ordenada por Jugador2  */
