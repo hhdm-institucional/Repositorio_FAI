@@ -289,7 +289,7 @@ function ordenarPorJugador2 (array $juegos){
 function cmp(array $juego1, array $juego2){
     /**Funcion de comparación entre dos juegos  
      * @param int orden
-     * @ruturn int    */
+     * @return int    */
 
     if($juego1["jugador2"]==$juego2["jugador2"]){
         $orden=0;
