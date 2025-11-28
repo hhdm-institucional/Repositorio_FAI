@@ -25,13 +25,13 @@ include_once("memoria.php");
 /**************************************/
 
 //1) 
-function cargarjuegos (){
+function cargarJuegos (){
     /**Carga 10 o más juegos predefinidos en una colección de juegos
-     * @param array $coleccionjuegos
+     * @param array $coleccionJuegos
      * @return $array 
      */
 
-    $coleccionjuegos = array(
+    $coleccionJuegos = array(
     // Jugada 1: 
     0 => array(
         "jugador1" => "Sofía",
@@ -93,7 +93,7 @@ function cargarjuegos (){
         "jugador1" => "Valentina",
         "aciertos1" => 2,
         "jugador2" => "Sofía",
-        "aciertos2" => 0 
+        "aciertos2" => 3 
     ),
 
     // Jugada 9: 
@@ -113,13 +113,13 @@ function cargarjuegos (){
     ) 
     );    
 
-    return $coleccionjuegos;
+    return $coleccionJuegos;
 }
 //2) -> En memoria.php como solicitarNumerosEntre($min,$max)
 //3)
 function seleccionarOpcion(){
     /**Muestra las opciones del menú en la pantalla, solicita al usuario una opción valida
-     * Vuelve a solicitar una opcion si es inválida, la última opcón debe ser Salir
+     * Vuelve a solicitar una opcion si es inválida, la última opción debe ser Salir
      * @param int $opcion 
      * @return int       */
     
@@ -171,6 +171,7 @@ function agregarJuego(array $juegos, array $unJuego){
     /** Lee una colección de juegos y un juego, agrega el juego a la colección
      * @return array    */
     $juegos[count($juegos)]=$unJuego;
+    return $juegos;
 }
 //6)
 function primerJuegoGanado(array $juegos, string $nombreJugador){
@@ -304,7 +305,7 @@ function cmp(array $juego1, array $juego2){
 
 //Declaración de variables:
 /*
- * @param int $cantjuegos, $opcion, $nroJuego, $ganados, $nroJugador
+ * @param int $cantJuegos, $opcion, $nroJuego, $ganados, $nroJugador
  * @param array $juegos, $unJuego 
  * @param string $resultadoUnJuego, $unNombre
  * @param float $porcentaje
@@ -320,8 +321,8 @@ $ganados=0;
 $nroJugador=0;
 $porcentaje=0;
 //Precargado (Punto 11.a)
-$juegos=cargarjuegos();
-$cantjuegos=count($juegos); //total de juegos en $juegos
+$juegos=cargarJuegos();
+$cantJuegos=count($juegos); //total de juegos en $juegos
 
 do {    
     $opcion =seleccionarOpcion();
@@ -331,17 +332,17 @@ do {
             /* Al iniciar se solicitan los nombres de los jugadores (lo hace la funcion en memoria.php)
             /* Al finalizar guarda los resultados en una estructura de datos ($juegos) */
             echo "\n--- JUGAR A MEMORIA ---\n";
-            $unJuego=jugarMemoria();
-            agregarJuego($juegos,$unJuego); 
-            $cantjuegos++;
+            $unJuego=jugarMemoria(); 
+            $juegos=agregarJuego($juegos,$unJuego); 
+            $cantJuegos++;
             break;
 
         case 2: 
             /* 2) MOSTRAR UN JUEGO */
             /* Se solicita al usuario un número de juego y se lo muestra en pantalla */
             echo "\n--- MOSTRAR UN JUEGO ---\n";
-            echo "Ingrese un número entre 0 y ".($cantjuegos-1)." \n";
-            $nroJuego=solicitarNumeroEntre(0,$cantjuegos-1);
+            echo "Ingrese un número entre 0 y ".($cantJuegos-1)." \n";
+            $nroJuego=solicitarNumeroEntre(0,$cantJuegos-1);
             imprimirDatosJuego($juegos, $nroJuego);                
             break;
 
@@ -402,7 +403,7 @@ do {
              *      consultar manual: https://www.php.net/manual/es/function.print-r.php
              */
             echo "\n--- MOSTRAR LISTADO DE JUEGOS ORDENADOS POR JUGADOR 2 ---\n";
-            ordenarPorJugador2($juegos); // 
+            ordenarPorJugador2($juegos);  
             break;
 
         case 7: 
