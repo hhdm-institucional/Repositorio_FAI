@@ -210,13 +210,13 @@ function resumenJugador($juegos, $nombreJugador) {
     $perdidos = 0;
     $empatados = 0;
     $acumulado = 0;
-    $g=-1; // inicializo con un valor distinto al de las posibilidades 
+    //$g=-1; // inicializo con un valor distinto al de las posibilidades 
 
     for ($i = 0; $i < count($juegos); $i++) {
         $p = $juegos[$i];
 
         // Determinar ganador según aciertos
-        $g=($p);
+        $g=ganador($p);
 
         // ¿El jugador participó en esta partida?
         if ($p["jugador1"] == $nombreJugador) {
