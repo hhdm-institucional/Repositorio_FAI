@@ -377,7 +377,17 @@ do {
             echo "Ingrese un número de jugador (1 o 2): \n";
             $nroJugador=solicitarNumeroEntre(1, 2);
             $ganados=cantidadGanadosNroJugador($juegos,$nroJugador);
-            $porcentaje=($ganados*100)/(cantidadGanados($juegos));
+            
+            $totalGanados = cantidadGanados($juegos);
+
+            if ($totalGanados > 0) {
+                $porcentaje = ($ganados * 100) / $totalGanados;
+            } else {
+                $porcentaje = 0; // o el valor que quieras mostrar cuando no hay ganadores
+            }
+
+
+            //$porcentaje=($ganados*100)/(cantidadGanados($juegos));
             echo "El jugador ".$nroJugador." ganó el ".$porcentaje."% del total de los juegos ganados. \n";
             break;
         
