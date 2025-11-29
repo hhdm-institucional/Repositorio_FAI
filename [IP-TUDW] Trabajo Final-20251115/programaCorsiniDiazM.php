@@ -25,8 +25,7 @@ include_once("memoria.php");
 /**************************************/
 
 //1)
-/**
- * Carga 10 juegos predefinidos en una colección de juegos
+/** Carga 10 juegos predefinidos en una colección de juegos
  * @return array
  */
 function cargarJuegos (){ 
@@ -117,7 +116,7 @@ function cargarJuegos (){
 //2) -> En memoria.php como solicitarNumerosEntre($min,$max)
 //3)
 /** Muestra las opciones del menú en la pantalla, solicita al usuario una opción valida
- * Vuelve a solicitar una opcion si es inválida, la última opción debe salir del programa
+ * Vuelve a solicitar una opcion si es inválida, la última opción es salir del programa
  * @return int      
  */
 function seleccionarOpcion(){
@@ -135,9 +134,9 @@ function seleccionarOpcion(){
 }
 
 // FUNCION AUXILIAR GANADOR DE UN JUEGO 
-/** Recibe unJuego, determina si el ganador es el jugador1 (1) el jugador2(2) o empataron (0)
+/** Recibe unJuego, determina si el ganador es el jugador1 (1), el jugador2(2) o empataron (0)
  * @param array $unJuego
- * @return int 
+ * @return int
  */
 function ganador($unJuego){
     if ($unJuego["aciertos1"] > $unJuego["aciertos2"]) {
@@ -160,16 +159,17 @@ function imprimirDatosJuego($juegos, $indice){
     $resultadoUnJuego=(ganador($unJuego)==1?"ganó jugador 1":(ganador($unJuego)==2?"ganó jugador 2":"empate"));
 
     echo "\n**************************************\n".
-        "Juego MEMORIA: ".$indice.", ".$resultadoUnJuego." \n".
-        "Jugador 1: ".$unJuego["jugador1"]." obtuvo ".$unJuego["aciertos1"]." aciertos \n".//ver de poner el nombre en uppercase
-        "Jugador 2: ".$unJuego["jugador2"]." obtuvo ".$unJuego["aciertos2"]." aciertos \n".
+        "Juego MEMORIA: ".($indice+1).", (".$resultadoUnJuego.") \n".
+        "Jugador 1: ".strtoupper($unJuego["jugador1"])." obtuvo ".$unJuego["aciertos1"]." aciertos \n".
+        "Jugador 2: ".strtoupper($unJuego["jugador2"])." obtuvo ".$unJuego["aciertos2"]." aciertos \n".
         "**************************************\n\n";                  
 }
 //5)
 /** Lee una colección de juegos y un juego, agrega el juego a la colección
  * @param array $juegos
  * @param array $unJuego
- * @return array    */
+ * @return array   
+ */
 function agregarJuego($juegos, $unJuego){
     $juegos[count($juegos)]=$unJuego;
     return $juegos;
@@ -197,8 +197,7 @@ function primerJuegoGanado($juegos, $nombreJugador){
     return $indice;
 }
 //7)
-/**
- * Función que dada la colección de juegos y el nombre de un jugador
+/** Función que dada la colección de juegos y el nombre de un jugador
  * retorna el resumen del jugador.
  * @param array $juegos
  * @param string $nombreJugador
@@ -210,7 +209,6 @@ function resumenJugador($juegos, $nombreJugador) {
     $perdidos = 0;
     $empatados = 0;
     $acumulado = 0;
-    //$g=-1; // inicializo con un valor distinto al de las posibilidades 
 
     for ($i = 0; $i < count($juegos); $i++) {
         $p = $juegos[$i];
@@ -259,7 +257,7 @@ function resumenJugador($juegos, $nombreJugador) {
      * */
 function cantidadGanados($juegos){
     $cont=0;
-    foreach ($juegos as $indice => $unJuego) {
+    foreach ($juegos as $unJuego) {
         if (ganador($unJuego)!=0) {
             $cont++;
         }
@@ -274,7 +272,7 @@ function cantidadGanados($juegos){
      * */
 function cantidadGanadosNroJugador ($juegos, $nroJugador){
     $ganados=0;
-    foreach ($juegos as $indice=>$unJuego){
+    foreach ($juegos as $unJuego){
         if (ganador($unJuego)==$nroJugador) {
             $ganados++;
         }
@@ -350,9 +348,9 @@ do {
             /* 2) MOSTRAR UN JUEGO */
             /* Se solicita al usuario un número de juego y se lo muestra en pantalla */
             echo "\n--- MOSTRAR UN JUEGO ---\n";
-            echo "Ingrese un número entre 0 y ".($cantJuegos-1)." \n";
-            $nroJuego=solicitarNumeroEntre(0,$cantJuegos-1);
-            imprimirDatosJuego($juegos, $nroJuego);                
+            echo "Ingrese un número entre 1 y ".($cantJuegos)." \n";
+            $nroJuego=solicitarNumeroEntre(1,$cantJuegos);
+            imprimirDatosJuego($juegos, ($nroJuego-1));                
             break;
 
         case 3:
@@ -386,8 +384,6 @@ do {
                 $porcentaje = 0; // o el valor que quieras mostrar cuando no hay ganadores
             }
 
-
-            //$porcentaje=($ganados*100)/(cantidadGanados($juegos));
             echo "El jugador ".$nroJugador." ganó el ".$porcentaje."% del total de los juegos ganados. \n";
             break;
         
@@ -404,7 +400,7 @@ do {
 
             // mostramos el resumen formateado
             echo "**************************************\n";
-            echo "Jugador: " . strtoupper($resumen['jugador']) . "\n";
+            echo "Jugador: " . strtoupper($resumen['jugador']). "\n";
             echo "Ganó: " . $resumen['ganados'] . " juegos\n";
             echo "Perdió: " . $resumen['perdidos'] . " juegos\n";
             echo "Empató: " . $resumen['empatados'] . " juegos\n";
