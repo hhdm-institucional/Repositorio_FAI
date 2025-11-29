@@ -6,7 +6,7 @@ include_once("memoria.php");
 /**************************************/
 
 /**
- * Apéllido, nombre: Corsini, Agustín.
+ * Apellido, nombre: Corsini, Agustín.
  * Legajo: FAI-5302. 
  * Carrera: TUDW.
  * Mail: agustin.corsini@est.fi.uncoma.edu.ar
